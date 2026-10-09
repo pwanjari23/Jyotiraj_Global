@@ -63,7 +63,7 @@ export default function HeroSection() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory border border-golden-amber/35 mb-5 shadow-soft">
               <span className="w-1.5 h-1.5 rounded-full bg-golden-amber animate-pulse" />
               <span className="text-[0.68rem] sm:text-xs font-semibold tracking-[0.22em] text-brand-brown uppercase">
-                Healthy Bites • Happy Life • Pure Cow Ghee
+                100% Natural • Pure Cow Ghee • Handcrafted Daily
               </span>
             </div>
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
 
             {/* Supporting Copy */}
             <p className="text-sm sm:text-base lg:text-lg text-muted-taupe leading-relaxed max-w-xl font-normal">
-              Healthy Bites, Happy Life. Discover our handcrafted selection of authentic dry fruit laddus, loaded with whole almonds, walnuts, cashews, and pure desi cow ghee for lasting daily energy.
+              A healthy treat packed with nature’s best ingredients. Discover our handcrafted selection of authentic dry fruit laddus, loaded with whole almonds, walnuts, cashews, and pure desi cow ghee for lasting vitality.
             </p>
 
             {/* Action Buttons */}
