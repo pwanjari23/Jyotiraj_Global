@@ -62,16 +62,16 @@ export default function ProductCollection() {
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full bg-golden-amber" />
               <h3 className="font-serif text-xl sm:text-2xl text-golden-amber-light font-normal">
-                Artisanal Traditional Laddus
+                Artisanal Laddus &amp; Healthy Confections
               </h3>
             </div>
             <span className="text-[0.7rem] uppercase tracking-wider text-ivory/50 font-medium hidden sm:inline">
-              Line 1 • Pure Desi Ghee
+              Line 1 • 6 Authentic Varieties • Pure Desi Ghee
             </span>
           </div>
 
-          {/* Compact Grid: 5 items per line on desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          {/* Compact Grid: 6 items per line on desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {LADDU_COLLECTION.map((item) => (
               <article
                 key={item.id}
