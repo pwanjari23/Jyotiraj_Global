@@ -100,8 +100,8 @@ export default function GlobalTradeSection() {
               <div className="relative rounded-3xl overflow-hidden border border-golden-amber/35 bg-[#482316]/90 backdrop-blur-md shadow-premium p-3 sm:p-4">
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-roasted-brown group">
                   <img
-                    src="/images/categories/corporate.jpg"
-                    alt="Carefully curated laddu gift boxes and confections ready for corporate festive gifting and trade distribution"
+                    src="/images/products/dry-fruit-laddu-3d.jpg"
+                    alt="Artisanal dry fruit laddus crafted for institutional supply and trade distribution"
                     className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
