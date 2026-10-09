@@ -67,10 +67,11 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.65rem] leading-[1.12] text-brand-brown font-normal tracking-tight">
-              Artisanal Laddus.{' '}
-              <span className="italic block mt-1 text-roasted-brown">
+            {/* Main Headline matching the client's mockup design */}
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.1] text-brand-brown font-normal tracking-tight">
+              <span className="text-[#1E3A2B] font-bold block sm:inline">Dry Fruits </span>
+              <span className="text-golden-amber-dark font-serif italic block sm:inline">Laddu.</span>{' '}
+              <span className="text-roasted-brown block mt-1 text-2xl sm:text-3xl lg:text-4xl font-normal">
                 Crafted with Care.
               </span>
             </h1>
@@ -80,7 +81,7 @@ export default function HeroSection() {
 
             {/* Supporting Copy */}
             <p className="text-sm sm:text-base lg:text-lg text-muted-taupe leading-relaxed max-w-xl font-normal">
-              A healthy treat packed with nature's best ingredients. Discover our handcrafted selection of authentic laddus and traditional wellness confections made with pure desi cow ghee.
+              A healthy treat, packed with nature's best ingredients. Discover our handcrafted selection of authentic laddus and traditional wellness confections made with pure desi cow ghee.
             </p>
 
             {/* Action Buttons */}
@@ -89,10 +90,10 @@ export default function HeroSection() {
               <button
                 type="button"
                 onClick={() => scrollTo('products')}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-golden-amber hover:bg-golden-amber-dark text-roasted-brown font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-gold-glow hover:shadow-elevated active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#1E3A2B] hover:bg-[#15291E] text-ivory font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-soft hover:shadow-elevated active:scale-95"
               >
-                <span>Explore Laddus</span>
-                <ArrowRight className="w-4 h-4 text-roasted-brown" />
+                <span>View Products</span>
+                <ArrowRight className="w-4 h-4 text-golden-amber" />
               </button>
 
               {/* Secondary CTA */}
@@ -150,25 +151,25 @@ export default function HeroSection() {
                   transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
                 }}
               >
-                {/* Main Gourmet Food Photography */}
-                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-cream shadow-inner group">
+                {/* Main Gourmet Food Photography from the shop owner's capture */}
+                <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-cream shadow-inner group">
                   <img
-                    src="/images/products/dry-fruits-laddu.jpg"
-                    alt="Artisanal dry fruit laddus crafted by Jyotiraj Global"
-                    className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
+                    src="/images/products/hero-laddu-platter.jpg"
+                    alt="Handcrafted dry fruits laddu platter in brass thali captured by Jyotiraj Global"
+                    className="w-full h-full object-cover object-center transform duration-700 group-hover:scale-105"
                     loading="eager"
                   />
                   
                   {/* Gentle warm gradient vignette overlay for editorial lighting */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-roasted-brown/70 via-roasted-brown/15 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-roasted-brown/70 via-transparent to-transparent pointer-events-none" />
 
                   {/* Bottom caption overlay */}
                   <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:bottom-6 text-ivory text-left">
                     <p className="text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.22em] text-golden-amber font-semibold">
-                      Signature Handcrafted Collection
+                      Signature Handcrafted Platter
                     </p>
                     <p className="font-serif text-base sm:text-lg text-ivory mt-0.5">
-                      Dry Fruit • Methi • Khajur Roll • Anjir Barfi
+                      Dry Fruits Laddu • Pure Desi Cow Ghee
                     </p>
                   </div>
                 </div>
