@@ -6,8 +6,8 @@
 export const COMPANY_INFO = {
   name: "JYOTIRAJ GLOBAL COMPANY",
   legalName: "Jyotiraj Global Company",
-  tagline: "Nature's Finest. Sourced with Care.",
-  eyebrow: "QUALITY • TRUST • GLOBAL AMBITIONS",
+  tagline: "Artisanal Handcrafted Laddus & Healthy Treats.",
+  eyebrow: "ARTISANAL LADDUS • PURE DESI GHEE • GLOBAL AMBITIONS",
   email: "narendrameghare21@gmail.com",
   phone: "+91 73043 14338",
   phoneRaw: "917304314338",
@@ -16,7 +16,7 @@ export const COMPANY_INFO = {
   // Direct WhatsApp click-to-chat link with prefilled respectful enquiry
   get whatsappUrl() {
     const message = encodeURIComponent(
-      "Hello Jyotiraj Global Company, I would like to inquire about your premium dry fruits and artisanal laddus."
+      "Hello Jyotiraj Global Company, I would like to inquire about your handcrafted artisanal laddus."
     );
     return `https://wa.me/${this.phoneRaw}?text=${message}`;
   },
@@ -36,7 +36,7 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Line 1: Client's Authentic Artisanal Laddus & Healthy Treats (Exact 6 Varieties)
+// Client's Authentic Artisanal Laddus & Healthy Treats (Exact 6 Varieties)
 export const LADDU_COLLECTION = [
   {
     id: "dry-fruits-laddu",
@@ -88,61 +88,17 @@ export const LADDU_COLLECTION = [
   },
 ];
 
-// Line 2: Premium Pure Dry Fruits (Max 5 items)
-export const DRY_FRUITS_COLLECTION = [
-  {
-    id: "almonds",
-    name: "Premium Almonds",
-    subName: "Californian & Mamra Kernels",
-    description: "Crisp, nutrient-dense whole kernels sorted for uniform size and sweet finish.",
-    image: "/images/products/almonds.jpg",
-    accent: "Rich in Vitamin E",
-  },
-  {
-    id: "cashews",
-    name: "Whole Cashews",
-    subName: "Grade W240 Jumbo Kernels",
-    description: "Plump, buttery ivory cashews with clean crescent curve and natural crunch.",
-    image: "/images/products/cashews.jpg",
-    accent: "Smooth & Delicately Roasted",
-  },
-  {
-    id: "pistachios",
-    name: "Roasted Pistachios",
-    subName: "Naturally Opened Kernels",
-    description: "Emerald green Iranian kernels in easy-open shells with delicate sea salt.",
-    image: "/images/products/pistachios.jpg",
-    accent: "Antioxidant-Rich Crunch",
-  },
-  {
-    id: "walnuts",
-    name: "Selected Walnuts",
-    subName: "Crisp Golden Halves",
-    description: "Earthy, omega-dense walnut halves preserved at optimal moisture for culinary use.",
-    image: "/images/products/walnuts.jpg",
-    accent: "Natural Omega-3 Nutrition",
-  },
-  {
-    id: "raisins",
-    name: "Golden & Green Raisins",
-    subName: "Sun-Dried Jewel Grapes",
-    description: "Succulent dried grapes harvested at peak maturity without artificial coatings.",
-    image: "/images/products/raisins.jpg",
-    accent: "Pure Natural Sweetness",
-  },
-];
-
 export const TRADE_HIGHLIGHTS = [
   {
-    title: "Product Showcase",
-    description: "A meticulously curated portfolio of dry fruits and natural ingredients meeting stringent grading standards.",
+    title: "Confectionery Portfolio",
+    description: "A meticulously crafted portfolio of traditional and healthy laddus meeting stringent purity standards.",
   },
   {
     title: "Business Enquiries",
-    description: "Transparent collaboration with domestic distributors, retail partners, and corporate gifting houses.",
+    description: "Transparent collaboration with domestic distributors, retail partners, and corporate festive gifting houses.",
   },
   {
     title: "Import & Export Opportunities",
-    description: "Building resilient bilateral trading partnerships to bridge regional harvest excellence with world markets.",
+    description: "Building resilient international partnerships to bring authentic Indian artisanal confections to world markets.",
   },
 ];

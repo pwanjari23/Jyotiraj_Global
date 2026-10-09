@@ -92,7 +92,7 @@ export default function FooterSection() {
             </div>
 
             <p className="text-xs sm:text-sm text-ivory/70 leading-relaxed max-w-sm text-left">
-              Nature’s finest dry fruits and prospective bilateral trade partnerships, presented with uncompromising quality and authentic Indian warmth.
+              Artisanal handcrafted laddus and authentic traditional confections, presented with uncompromising purity, pure desi cow ghee, and royal Indian warmth.
             </p>
 
             {/* Live Social Media Icons (Instagram, Facebook & WhatsApp) */}

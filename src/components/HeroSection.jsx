@@ -69,9 +69,9 @@ export default function HeroSection() {
 
             {/* Main Headline */}
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.65rem] leading-[1.12] text-brand-brown font-normal tracking-tight">
-              Nature’s Finest.{' '}
+              Artisanal Laddus.{' '}
               <span className="italic block mt-1 text-roasted-brown">
-                Sourced with Care.
+                Crafted with Care.
               </span>
             </h1>
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
 
             {/* Supporting Copy */}
             <p className="text-sm sm:text-base lg:text-lg text-muted-taupe leading-relaxed max-w-xl font-normal">
-              Discover a carefully presented selection of dry fruits and discover Jyotiraj Global Company's vision for connecting quality products with wider markets.
+              A healthy treat packed with nature's best ingredients. Discover our handcrafted selection of authentic laddus and traditional wellness confections made with pure desi cow ghee.
             </p>
 
             {/* Action Buttons */}
@@ -91,7 +91,7 @@ export default function HeroSection() {
                 onClick={() => scrollTo('products')}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-golden-amber hover:bg-golden-amber-dark text-roasted-brown font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-gold-glow hover:shadow-elevated active:scale-95"
               >
-                <span>Explore Our Products</span>
+                <span>Explore Laddus</span>
                 <ArrowRight className="w-4 h-4 text-roasted-brown" />
               </button>
 
@@ -110,18 +110,18 @@ export default function HeroSection() {
             <div className="grid grid-cols-3 gap-4 pt-8 mt-10 border-t border-taupe-light w-full max-w-lg">
               <div className="flex flex-col">
                 <span className="font-serif text-lg sm:text-xl font-bold text-brand-brown">
-                  Grade A
+                  Pure Cow Ghee
                 </span>
                 <span className="text-[0.7rem] text-muted-taupe mt-0.5">
-                  Meticulously Sorted
+                  Slow-Roasted Aroma
                 </span>
               </div>
               <div className="flex flex-col border-l border-taupe-light pl-4">
                 <span className="font-serif text-lg sm:text-xl font-bold text-brand-brown">
-                  Whole Kernels
+                  No Added Sugar
                 </span>
                 <span className="text-[0.7rem] text-muted-taupe mt-0.5">
-                  Natural Texture &amp; Taste
+                  Natural Date Sweetness
                 </span>
               </div>
               <div className="flex flex-col border-l border-taupe-light pl-4">
@@ -153,8 +153,8 @@ export default function HeroSection() {
                 {/* Main Gourmet Food Photography */}
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-cream shadow-inner group">
                   <img
-                    src="/images/banners/hero-banner.jpg"
-                    alt="Jyotiraj Global gourmet assortment of almonds, cashews, pistachios, walnuts, and raisins"
+                    src="/images/products/dry-fruits-laddu.jpg"
+                    alt="Artisanal dry fruit laddus crafted by Jyotiraj Global"
                     className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                     loading="eager"
                   />
@@ -165,10 +165,10 @@ export default function HeroSection() {
                   {/* Bottom caption overlay */}
                   <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:bottom-6 text-ivory text-left">
                     <p className="text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.22em] text-golden-amber font-semibold">
-                      Gourmet Harvest Selection
+                      Signature Handcrafted Collection
                     </p>
                     <p className="font-serif text-base sm:text-lg text-ivory mt-0.5">
-                      Almonds • Cashews • Pistachios • Walnuts • Raisins
+                      Dry Fruit • Methi • Khajur Roll • Anjir Barfi
                     </p>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ export default function HeroSection() {
                       Authentic Quality
                     </p>
                     <p className="text-xs font-bold text-brand-brown font-serif">
-                      Pure &amp; Natural Harvest
+                      Pure Desi Ghee Laddus
                     </p>
                   </div>
                 </div>

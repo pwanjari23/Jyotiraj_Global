@@ -101,7 +101,7 @@ export default function GlobalTradeSection() {
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-roasted-brown group">
                   <img
                     src="/images/categories/corporate.jpg"
-                    alt="Carefully curated and packed dry fruits ready for corporate gifting and commercial trade"
+                    alt="Carefully curated laddu gift boxes and confections ready for corporate festive gifting and trade distribution"
                     className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />

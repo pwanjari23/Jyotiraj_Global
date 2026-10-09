@@ -95,7 +95,7 @@ export default function LadooFeature() {
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-brown font-normal tracking-tight">
-            How Pure Dry Fruits Become{' '}
+            How Wholesome Ingredients Become{' '}
             <span className="italic text-roasted-brown block sm:inline">
               Royal Artisanal Laddus.
             </span>
@@ -104,7 +104,7 @@ export default function LadooFeature() {
           <div className="w-16 h-0.5 bg-golden-amber/70 mx-auto mt-4 mb-4" />
 
           <p className="text-sm sm:text-base text-muted-taupe leading-relaxed max-w-2xl mx-auto">
-            Experience our cinematic visual journey tracing whole raw dry fruits transforming into golden spherical confections with pure ingredient craftsmanship.
+            Experience our cinematic visual journey tracing premium natural ingredients transforming into golden spherical laddus with pure craftsmanship.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export default function LadooFeature() {
                 muted
                 loop
                 className="w-full h-full object-cover"
-                aria-label="3D video showing the process of making dry fruit laddus from raw nuts to golden spheres with zero humans visible"
+                aria-label="3D video showing the artisanal process of crafting golden laddus from wholesome ingredients with zero humans visible"
               />
             </div>
 
