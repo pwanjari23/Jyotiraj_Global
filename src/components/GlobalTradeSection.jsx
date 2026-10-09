@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Building2, Package, Globe2, Mail } from 'lucide-react';
+import { ArrowUpRight, Building2, Package, Globe2 } from 'lucide-react';
 import { COMPANY_INFO, TRADE_HIGHLIGHTS } from '../data/companyData';
 
 export default function GlobalTradeSection() {
@@ -77,7 +77,7 @@ export default function GlobalTradeSection() {
               ))}
             </div>
 
-            {/* Business Call to Action: WhatsApp and Direct Email Redirect */}
+            {/* Business Call to Action */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-9 w-full sm:w-auto">
               <a
                 href={COMPANY_INFO.whatsappUrl}
@@ -87,14 +87,6 @@ export default function GlobalTradeSection() {
               >
                 <span>Let's Explore Business Opportunities</span>
                 <ArrowUpRight className="w-4 h-4 text-roasted-brown" />
-              </a>
-
-              <a
-                href={`mailto:${COMPANY_INFO.email}?subject=Business%20Partnership%20Enquiry%20-%20Jyotiraj%20Global`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-ivory/10 hover:bg-ivory/20 text-ivory border border-golden-amber/40 font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 hover:border-golden-amber active:scale-95"
-              >
-                <Mail className="w-4 h-4 text-golden-amber" />
-                <span>Email Us Directly</span>
               </a>
             </div>
 

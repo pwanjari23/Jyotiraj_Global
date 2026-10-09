@@ -1,43 +1,104 @@
-import React, { useState, useRef, useMemo } from 'react';
-import { Play, Pause, Volume2, VolumeX, Sparkles, RotateCcw } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Play, Pause, Volume2, VolumeX, Sparkles, RotateCcw, Clock } from 'lucide-react';
+
+const PROCESS_STAGES = [
+  {
+    stage: 1,
+    time: 0,
+    title: "1. Premium Nuts & Dates",
+    desc: "Whole almonds, cashews, pistachios, and Medjool dates gathering on dark slate with saffron.",
+  },
+  {
+    stage: 2,
+    time: 3,
+    title: "2. Precision Cracking",
+    desc: "Coarse crunchy almond chunks, broken cashews, and emerald pistachio slivers.",
+  },
+  {
+    stage: 3,
+    time: 6,
+    title: "3. Pure Desi Ghee Blend",
+    desc: "Toasted nut slivers gently blending into warm date caramel with aromatic cow ghee.",
+  },
+  {
+    stage: 4,
+    time: 9,
+    title: "4. Rolling Artisanal Spheres",
+    desc: "Perfect spheres rolling in a bed of sliced emerald pistachios and toasted almond flakes.",
+  },
+  {
+    stage: 5,
+    time: 12,
+    title: "5. Gold Leaf Garnish",
+    desc: "Finished golden laddus crowned with edible gold foil on a luxury stone pedestal.",
+  },
+];
 
 export default function LadooFeature() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [activeStage, setActiveStage] = useState(0);
+  const videoRef = useRef(null);
 
-  // Stable ambient floating gold shimmer particles
-  const particles = useMemo(() => {
-    return Array.from({ length: 24 }).map((_, i) => ({
-      id: i,
-      x: ((i * 19) % 95) + 2,
-      y: ((i * 27) % 92) + 4,
-      size: (i % 3) + 2.5,
-    }));
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      const t = video.currentTime;
+      setCurrentTime(t);
+      // Determine stage (each stage is 3 seconds)
+      const stageIdx = Math.min(4, Math.floor(t / 3));
+      setActiveStage(stageIdx);
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, []);
 
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    setTilt({
-      x: -(y / (rect.height / 2)) * 8,
-      y: (x / (rect.width / 2)) * 8,
-    });
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.warn('Playback error:', err);
+      });
+    }
   };
 
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  const seekToStage = (timeInSec) => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = timeInSec;
+    if (!isPlaying) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const handleRestart = () => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = 0;
+    videoRef.current.play();
+    setIsPlaying(true);
   };
 
   return (
     <section id="craft" className="py-24 sm:py-32 bg-cream/70 text-brand-brown relative overflow-hidden border-b border-taupe-light/70">
       
-      {/* Delicate background illumination */}
+      {/* Background illumination aura */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-golden-amber/10 blur-[120px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-golden-amber/10 blur-[130px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -48,7 +109,7 @@ export default function LadooFeature() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory border border-golden-amber/35 mb-4 shadow-soft">
             <Sparkles className="w-3.5 h-3.5 text-golden-amber" />
             <span className="text-[0.68rem] sm:text-xs font-semibold tracking-[0.22em] text-brand-brown uppercase">
-              3D Confectionery Feature • No Human Touch
+              15-Second 3D Culinary Process • Zero Human Touch
             </span>
           </div>
 
@@ -62,174 +123,141 @@ export default function LadooFeature() {
           <div className="w-16 h-0.5 bg-golden-amber/70 mx-auto mt-4 mb-4" />
 
           <p className="text-sm sm:text-base text-muted-taupe leading-relaxed max-w-2xl mx-auto">
-            Dry fruits bring natural texture, rich flavors, and a touch of tradition to familiar favourites. An impressive 3D cinematic showcase of pure artisanal dry fruit spheres on a luxury dark stone pedestal — zero human hands, only pure culinary excellence.
+            Experience our 15-second cinematic 3D visual journey tracing whole raw dry fruits transforming into artisanal golden ladoos. Pure ingredient choreography without human presence.
           </p>
         </div>
 
-        {/* 3D Cinematic Gourmet Feature Panel */}
+        {/* Main 15-Second Video Player Feature */}
         <div className="max-w-4xl mx-auto">
-          <div
-            ref={containerRef}
-            className="perspective-container relative rounded-3xl overflow-hidden bg-roasted-brown border border-golden-amber/40 shadow-premium p-3 sm:p-5 group cursor-pointer select-none"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            {/* 3D Render Screen with Interactive Camera Perspective */}
-            <div
-              className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#2a130c] via-roasted-brown to-[#1f0d07] shadow-inner preserve-3d transition-transform duration-300 ease-out"
-              style={{
-                transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-              }}
-            >
-              {/* Ultra-High-Definition 3D Dry Fruit Ladoo Render */}
-              <img
-                src="/images/products/dry-fruit-laddu-3d.jpg"
-                alt="Cinematic 3D artisanal dry fruit ladoos encrusted with pistachios, cashews, almonds, and edible gold leaf"
-                className={`w-full h-full object-cover transition-transform duration-1000 ease-out ${
-                  isPlaying ? 'scale-105' : 'scale-100'
-                }`}
+          <div className="relative rounded-3xl overflow-hidden bg-roasted-brown border border-golden-amber/40 shadow-premium p-3 sm:p-5 group">
+            
+            {/* The 15-Second 3D Process Video */}
+            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-roasted-brown shadow-inner">
+              <video
+                ref={videoRef}
+                src="/videos/dry-fruit-ladoo-craft.mp4"
+                poster="/images/products/dry-fruit-laddu-3d.jpg"
+                autoPlay
+                playsInline
+                muted={isMuted}
+                loop
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                className="w-full h-full object-cover"
+                aria-label="15-second 3D video showing the process of making dry fruit laddus from raw nuts to golden spheres"
               />
 
-              {/* Gentle Cinematic Ambient Vignette */}
+              {/* Gentle Vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-roasted-brown/90 via-transparent to-black/30 pointer-events-none" />
 
-              {/* Shimmering Golden Floating Dust Particles */}
-              {isPlaying && (
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {particles.map((p) => (
-                    <span
-                      key={p.id}
-                      className="absolute rounded-full bg-golden-amber shadow-gold-glow animate-pulse"
-                      style={{
-                        top: `${p.y}%`,
-                        left: `${p.x}%`,
-                        width: `${p.size}px`,
-                        height: `${p.size}px`,
-                        opacity: 0.65,
-                        transition: 'transform 3s ease',
-                      }}
-                    />
-                  ))}
+              {/* Top Status Bar: 15s Timer & Stage indicator */}
+              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 pointer-events-none flex items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-roasted-brown/85 backdrop-blur-md border border-golden-amber/40 text-ivory text-xs shadow-soft">
+                  <span className="w-2 h-2 rounded-full bg-golden-amber animate-pulse" />
+                  <span className="font-serif tracking-wider">3D Culinary Reel: {currentTime.toFixed(1)}s / 15.0s</span>
+                </div>
+              </div>
+
+              {/* Center Play Button Overlay when paused */}
+              {!isPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    type="button"
+                    onClick={togglePlay}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-golden-amber text-roasted-brown flex items-center justify-center shadow-gold-glow transition-all duration-300 hover:scale-105 active:scale-95"
+                    aria-label="Play 15-second video"
+                  >
+                    <Play className="w-8 h-8 fill-current ml-1" />
+                  </button>
                 </div>
               )}
 
-              {/* Top Status Tag: Pure 3D Visual - No Humans */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 pointer-events-none">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-roasted-brown/85 backdrop-blur-md border border-golden-amber/40 text-ivory text-xs shadow-soft">
-                  <span className="w-2 h-2 rounded-full bg-golden-amber animate-ping" />
-                  <span className="font-serif tracking-wider">3D Artisanal Presentation • Untouched</span>
-                </div>
-              </div>
-
-              {/* Center Playback Indicator */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-golden-amber/90 text-roasted-brown flex items-center justify-center shadow-gold-glow transition-all duration-300 ${
-                    isPlaying ? 'opacity-0 scale-75' : 'opacity-100 scale-100 pointer-events-auto cursor-pointer'
-                  }`}
-                  onClick={() => setIsPlaying(true)}
+              {/* Bottom Custom Timeline Progress Bar */}
+              <div className="absolute bottom-16 sm:bottom-20 left-4 right-4 sm:left-6 sm:right-6">
+                <div className="w-full h-1.5 bg-ivory/20 rounded-full overflow-hidden backdrop-blur-sm cursor-pointer"
+                  onClick={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const pos = (e.clientX - rect.left) / rect.width;
+                    seekToStage(pos * 15);
+                  }}
                 >
-                  <Play className="w-8 h-8 fill-current ml-1" />
+                  <div
+                    className="h-full bg-gradient-to-r from-golden-amber to-golden-amber-light transition-all duration-150"
+                    style={{ width: `${(currentTime / 15) * 100}%` }}
+                  />
                 </div>
               </div>
 
-              {/* Bottom Caption & Controls Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 text-ivory">
+              {/* Bottom Control Bar & Stage Caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-ivory">
                 <div className="text-left">
-                  <span className="text-[0.68rem] uppercase tracking-[0.22em] text-golden-amber font-semibold block">
-                    Gourmet Confectionery • 3D Showcase
+                  <span className="text-[0.65rem] uppercase tracking-[0.22em] text-golden-amber font-semibold block">
+                    {PROCESS_STAGES[activeStage]?.title}
                   </span>
-                  <p className="font-serif text-lg sm:text-xl text-ivory mt-0.5">
-                    Pistachio Flakes • Cashew Kernels • Whole Almonds • Medjool Dates • Pure Ghee
+                  <p className="font-serif text-sm sm:text-base text-ivory mt-0.5 line-clamp-1">
+                    {PROCESS_STAGES[activeStage]?.desc}
                   </p>
                 </div>
 
-                {/* Media State Controls */}
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsPlaying(!isPlaying);
-                    }}
-                    className="p-2.5 rounded-full bg-ivory/15 hover:bg-ivory/25 backdrop-blur-md text-ivory border border-ivory/20 transition-colors"
-                    aria-label={isPlaying ? 'Pause 3D cinematic showcase' : 'Play 3D cinematic showcase'}
+                    onClick={togglePlay}
+                    className="p-2 sm:p-2.5 rounded-full bg-ivory/15 hover:bg-ivory/25 backdrop-blur-md text-ivory border border-ivory/20 transition-colors"
+                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
                   >
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5 fill-current" />}
                   </button>
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsMuted(!isMuted);
-                    }}
-                    className="p-2.5 rounded-full bg-ivory/15 hover:bg-ivory/25 backdrop-blur-md text-ivory border border-ivory/20 transition-colors"
-                    aria-label={isMuted ? 'Unmute' : 'Mute'}
+                    onClick={toggleMute}
+                    className="p-2 sm:p-2.5 rounded-full bg-ivory/15 hover:bg-ivory/25 backdrop-blur-md text-ivory border border-ivory/20 transition-colors"
+                    aria-label={isMuted ? 'Unmute video' : 'Mute video'}
                   >
                     {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleRestart}
+                    className="p-2 sm:p-2.5 rounded-full bg-ivory/15 hover:bg-ivory/25 backdrop-blur-md text-ivory border border-ivory/20 transition-colors"
+                    title="Replay from start"
+                    aria-label="Replay 15-second video"
+                  >
+                    <RotateCcw className="w-4 h-4" />
                   </button>
                 </div>
               </div>
 
             </div>
 
-            {/* Micro Interaction Prompt */}
-            <div className="flex items-center justify-between mt-3 px-2 text-ivory/65 text-xs">
-              <span className="flex items-center gap-1.5">
-                <RotateCcw className="w-3.5 h-3.5 text-golden-amber" />
-                <span>Move cursor across frame to interact in 3D perspective</span>
-              </span>
-              <span className="text-golden-amber font-mono hidden sm:inline">3D Gourmet Studio</span>
+            {/* Stage Quick-Jump Tabs below video */}
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-4 text-xs">
+              {PROCESS_STAGES.map((s, idx) => (
+                <button
+                  key={s.stage}
+                  type="button"
+                  onClick={() => seekToStage(s.time)}
+                  className={`p-2 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
+                    activeStage === idx
+                      ? 'bg-golden-amber/20 border-golden-amber text-golden-amber-light font-semibold shadow-soft'
+                      : 'bg-[#3e1c12] border-ivory/10 text-ivory/60 hover:text-ivory hover:border-ivory/30'
+                  }`}
+                >
+                  <span className="font-mono text-[0.65rem] block opacity-75">{s.time}s - {s.time + 3}s</span>
+                  <span className="truncate block font-serif text-xs mt-0.5">{s.title.split('. ')[1]}</span>
+                </button>
+              ))}
             </div>
 
           </div>
 
-          {/* Editorial Process Story Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-ivory p-4 rounded-xl border border-golden-amber/25 text-left shadow-soft">
-              <span className="text-xs font-mono font-bold text-golden-amber">01</span>
-              <h4 className="font-serif text-sm sm:text-base font-bold text-brand-brown mt-1">
-                Choicest Nuts
-              </h4>
-              <p className="text-[0.72rem] text-muted-taupe mt-1 leading-snug">
-                Cracked almonds, whole cashews, and Persian pistachios.
-              </p>
-            </div>
-
-            <div className="bg-ivory p-4 rounded-xl border border-golden-amber/25 text-left shadow-soft">
-              <span className="text-xs font-mono font-bold text-golden-amber">02</span>
-              <h4 className="font-serif text-sm sm:text-base font-bold text-brand-brown mt-1">
-                Gentle Roast
-              </h4>
-              <p className="text-[0.72rem] text-muted-taupe mt-1 leading-snug">
-                Slowly roasted to release rich natural oils and crisp aroma.
-              </p>
-            </div>
-
-            <div className="bg-ivory p-4 rounded-xl border border-golden-amber/25 text-left shadow-soft">
-              <span className="text-xs font-mono font-bold text-golden-amber">03</span>
-              <h4 className="font-serif text-sm sm:text-base font-bold text-brand-brown mt-1">
-                Natural Binding
-              </h4>
-              <p className="text-[0.72rem] text-muted-taupe mt-1 leading-snug">
-                Sweetened with luscious dates and a touch of pure desi ghee.
-              </p>
-            </div>
-
-            <div className="bg-ivory p-4 rounded-xl border border-golden-amber/25 text-left shadow-soft">
-              <span className="text-xs font-mono font-bold text-golden-amber">04</span>
-              <h4 className="font-serif text-sm sm:text-base font-bold text-brand-brown mt-1">
-                Artisanal Spheres
-              </h4>
-              <p className="text-[0.72rem] text-muted-taupe mt-1 leading-snug">
-                Golden spherical ladoos garnished with gold foil for celebrations.
-              </p>
+          {/* Editorial Note */}
+          <div className="mt-8 text-center">
+            <div className="inline-flex items-center gap-2 text-xs text-muted-taupe max-w-xl mx-auto">
+              <Clock className="w-4 h-4 text-golden-amber shrink-0" />
+              <span>Full 15-second 3D process sequence from raw harvest kernels to festive 24K gold-garnished confections.</span>
             </div>
           </div>
-
-          <p className="text-center text-[0.72rem] text-muted-taupe mt-6 italic">
-            * Editorial presentation highlighting the natural culinary harmony of premium dry fruits in traditional Indian confectionery.
-          </p>
 
         </div>
 
