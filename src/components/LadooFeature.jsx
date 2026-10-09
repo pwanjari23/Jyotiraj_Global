@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, ShieldCheck, Heart, Award } from 'lucide-react';
+import { Leaf, ShieldCheck, Heart, Award, Crown } from 'lucide-react';
 
 const PROCESS_STAGES = [
   {
@@ -9,7 +9,7 @@ const PROCESS_STAGES = [
     title: "Raw Nut Selection & Royal Dates",
     desc: "Whole California almonds, cashew halves, Turkish pistachios, and rich Medjool dates resting on charcoal slate with Kashmiri saffron threads.",
     tag: "Zero Refined Sugar",
-    icon: Sparkles,
+    icon: Leaf,
   },
   {
     stage: 2,
@@ -45,7 +45,7 @@ const PROCESS_STAGES = [
     title: "24K Edible Gold Leaf Finish",
     desc: "Finished golden laddus crowned with 24K edible gold leaf on luxury textured stone, ready for festive gifting and international export.",
     tag: "24K Edible Gold",
-    icon: Sparkles,
+    icon: Crown,
   },
 ];
 
@@ -88,7 +88,7 @@ export default function LadooFeature() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory border border-golden-amber/35 mb-4 shadow-soft">
-            <Sparkles className="w-3.5 h-3.5 text-golden-amber" />
+            <Leaf className="w-3.5 h-3.5 text-leaf-green" />
             <span className="text-[0.68rem] sm:text-xs font-semibold tracking-[0.22em] text-brand-brown uppercase">
               Artisanal Confectionery Craft
             </span>

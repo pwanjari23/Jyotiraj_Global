@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Leaf, ShieldCheck } from 'lucide-react';
 import { LADDU_COLLECTION, DRY_FRUITS_COLLECTION, COMPANY_INFO } from '../data/companyData';
 
 export default function ProductCollection() {
@@ -33,7 +33,7 @@ export default function ProductCollection() {
         {/* Section Main Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory/10 border border-golden-amber/40 mb-3.5 backdrop-blur-sm">
-            <Sparkles className="w-3.5 h-3.5 text-golden-amber" />
+            <Leaf className="w-3.5 h-3.5 text-golden-amber" />
             <span className="text-[0.68rem] sm:text-xs font-semibold tracking-[0.22em] text-golden-amber uppercase">
               Curated Heritage Collection
             </span>
