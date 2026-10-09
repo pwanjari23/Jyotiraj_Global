@@ -31,7 +31,7 @@ export const COMPANY_INFO = {
 export const NAV_LINKS = [
   { label: "Home", href: "#hero" },
   { label: "Our Products", href: "#products" },
-  { label: "3D Craft & Story", href: "#craft" },
+  { label: "Artisanal Craft", href: "#craft" },
   { label: "Global Trade", href: "#trade" },
   { label: "Contact", href: "#contact" },
 ];

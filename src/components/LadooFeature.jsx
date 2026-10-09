@@ -90,7 +90,7 @@ export default function LadooFeature() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory border border-golden-amber/35 mb-4 shadow-soft">
             <Sparkles className="w-3.5 h-3.5 text-golden-amber" />
             <span className="text-[0.68rem] sm:text-xs font-semibold tracking-[0.22em] text-brand-brown uppercase">
-              3D Craft & Story • Pure Culinary Process
+              Artisanal Confectionery Craft
             </span>
           </div>
 
@@ -104,7 +104,7 @@ export default function LadooFeature() {
           <div className="w-16 h-0.5 bg-golden-amber/70 mx-auto mt-4 mb-4" />
 
           <p className="text-sm sm:text-base text-muted-taupe leading-relaxed max-w-2xl mx-auto">
-            Experience our cinematic 3D visual journey tracing whole raw dry fruits transforming into golden spherical confections. Pure ingredient choreography with <span className="font-semibold text-brand-brown">zero human touch</span>.
+            Experience our cinematic visual journey tracing whole raw dry fruits transforming into golden spherical confections with pure ingredient craftsmanship.
           </p>
         </div>
 
@@ -217,8 +217,8 @@ export default function LadooFeature() {
                 <span className="text-xs text-muted-taupe">Zero refined sugar or syrup</span>
               </div>
               <div className="pt-2 sm:pt-0 sm:pl-4">
-                <span className="block font-serif text-lg font-bold text-brand-brown">0% Human Touch</span>
-                <span className="text-xs text-muted-taupe">Fully hygienic automated process</span>
+                <span className="block font-serif text-lg font-bold text-brand-brown">100% Hygienic Craft</span>
+                <span className="text-xs text-muted-taupe">Untouched modern culinary standards</span>
               </div>
               <div className="pt-2 sm:pt-0 sm:pl-4">
                 <span className="block font-serif text-lg font-bold text-brand-brown">Pure Cow Ghee</span>
