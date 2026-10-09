@@ -16,7 +16,7 @@ export const COMPANY_INFO = {
   // Direct WhatsApp click-to-chat link with prefilled respectful enquiry
   get whatsappUrl() {
     const message = encodeURIComponent(
-      "Hello Jyotiraj Global Company, I would like to inquire about your premium dry fruits and business opportunities."
+      "Hello Jyotiraj Global Company, I would like to inquire about your premium dry fruits and artisanal laddus."
     );
     return `https://wa.me/${this.phoneRaw}?text=${message}`;
   },
@@ -36,54 +36,91 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-export const PRODUCT_CATEGORIES = [
+// Line 1: Distinct Traditional & Dry Fruit Laddus (Max 5 items)
+export const LADDU_COLLECTION = [
+  {
+    id: "dry-fruit-laddu",
+    name: "Artisanal Dry Fruit Laddu",
+    subName: "No Added Sugar • Pure Desi Ghee",
+    description: "Dates, pistachios, cashews, and almonds bound in pure ghee with gold leaf.",
+    image: "/images/products/dry-fruit-laddu-3d.jpg",
+    accent: "Sugar-Free Date Sweetness",
+  },
+  {
+    id: "besan-laddu",
+    name: "Shahi Besan Laddu",
+    subName: "Slow Roasted Gram Flour",
+    description: "Golden roasted gram flour infused with fragrant green cardamom and almond slivers.",
+    image: "/images/products/besan-laddu.jpg",
+    accent: "Pure Cow Ghee Aroma",
+  },
+  {
+    id: "motichoor-laddu",
+    name: "Royal Motichoor Laddu",
+    subName: "Fine Golden Pearl Confection",
+    description: "Delicate gram flour pearls infused with saffron, melon seeds, and crushed pistachio.",
+    image: "/images/products/motichoor-laddu.jpg",
+    accent: "Kashmiri Saffron Infused",
+  },
+  {
+    id: "gond-laddu",
+    name: "Gond Nut Laddu (Dink)",
+    subName: "Traditional Winter Superfood",
+    description: "Edible gum crisped in ghee with poppy seeds, dry dates, and rich dry fruit medley.",
+    image: "/images/products/gond-laddu.jpg",
+    accent: "Natural Energy & Wellness",
+  },
+  {
+    id: "rava-laddu",
+    name: "Shahi Rava Nut Laddu",
+    subName: "Golden Semolina & Cashews",
+    description: "Roasted fine semolina with toasted whole cashews, golden raisins, and cardamom.",
+    image: "/images/products/rava-laddu.jpg",
+    accent: "Crisp Roasted Texture",
+  },
+];
+
+// Line 2: Premium Pure Dry Fruits (Max 5 items)
+export const DRY_FRUITS_COLLECTION = [
   {
     id: "almonds",
     name: "Premium Almonds",
-    subName: "Hand-selected Californian & Mamra varieties",
-    description: "Crisp, naturally nutrient-dense whole kernels sorted for consistent size and delicate sweetness.",
+    subName: "Californian & Mamra Kernels",
+    description: "Crisp, nutrient-dense whole kernels sorted for uniform size and sweet finish.",
     image: "/images/products/almonds.jpg",
-    accent: "Rich in vitamin E & healthy fats",
+    accent: "Rich in Vitamin E",
   },
   {
     id: "cashews",
     name: "Whole Cashews",
-    subName: "Grade W240 & W320 Whole Kernels",
-    description: "Plump, buttery-smooth whole cashews with clean ivory texture and rich, nutty finish.",
+    subName: "Grade W240 Jumbo Kernels",
+    description: "Plump, buttery ivory cashews with clean crescent curve and natural crunch.",
     image: "/images/products/cashews.jpg",
-    accent: "Naturally creamy & delicately roasted",
+    accent: "Smooth & Delicately Roasted",
   },
   {
     id: "pistachios",
     name: "Roasted Pistachios",
-    subName: "Naturally opened, lightly salted or plain",
-    description: "Vibrant emerald green kernels with easy-open shells, celebrated for distinctive crunch and flavor.",
+    subName: "Naturally Opened Kernels",
+    description: "Emerald green Iranian kernels in easy-open shells with delicate sea salt.",
     image: "/images/products/pistachios.jpg",
-    accent: "Antioxidant-rich wholesome snacking",
+    accent: "Antioxidant-Rich Crunch",
   },
   {
     id: "walnuts",
     name: "Selected Walnuts",
-    subName: "Crisp Halves & Brain-Patterned Kernels",
-    description: "Earthy, omega-rich whole walnut halves preserved at optimal freshness for culinary use and direct snacking.",
+    subName: "Crisp Golden Halves",
+    description: "Earthy, omega-dense walnut halves preserved at optimal moisture for culinary use.",
     image: "/images/products/walnuts.jpg",
-    accent: "Wholesome brain food & natural energy",
+    accent: "Natural Omega-3 Nutrition",
   },
   {
     id: "raisins",
     name: "Golden & Green Raisins",
-    subName: "Sun-dried long & round varieties",
-    description: "Naturally sweet, succulent dried grapes harvested at peak maturity without artificial sheen.",
+    subName: "Sun-Dried Jewel Grapes",
+    description: "Succulent dried grapes harvested at peak maturity without artificial coatings.",
     image: "/images/products/raisins.jpg",
-    accent: "Pure fruit sweetness & dietary fiber",
-  },
-  {
-    id: "dates",
-    name: "Choice Dates & Figs",
-    subName: "Medjool, Kimia & sundried whole figs",
-    description: "Luscious texture and deep caramel notes suited for everyday wellness, gifting, and artisanal confectionery.",
-    image: "/images/products/dates.jpg",
-    accent: "Naturally caramel-sweet & energizing",
+    accent: "Pure Natural Sweetness",
   },
 ];
 
