@@ -81,3 +81,12 @@
 .font-clean-sans {
   font-family: 'DM Sans', system-ui, sans-serif;
 }
+
+/* Hide scrollbars for slick carousel touch swiping */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

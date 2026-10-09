@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Leaf, ShieldCheck, Heart, Award, Crown } from 'lucide-react';
+import { Leaf, ShieldCheck, Heart, Award, Crown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PROCESS_STAGES = [
   {
@@ -52,6 +52,7 @@ const PROCESS_STAGES = [
 export default function LadooFeature() {
   const [activeStage, setActiveStage] = useState(0);
   const videoRef = useRef(null);
+  const cardsContainerRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -72,6 +73,28 @@ export default function LadooFeature() {
     if (!videoRef.current) return;
     videoRef.current.currentTime = timeInSec;
     videoRef.current.play().catch(() => {});
+  };
+
+  const scrollToCard = (index) => {
+    setActiveStage(index);
+    seekToStage(PROCESS_STAGES[index].time);
+    if (cardsContainerRef.current) {
+      const container = cardsContainerRef.current;
+      const card = container.children[index];
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  };
+
+  const handleCardsScroll = (e) => {
+    const el = e.currentTarget;
+    if (window.innerWidth >= 768) return;
+    const cardWidth = el.scrollWidth / PROCESS_STAGES.length;
+    const newIdx = Math.round(el.scrollLeft / cardWidth);
+    if (newIdx >= 0 && newIdx < PROCESS_STAGES.length && newIdx !== activeStage) {
+      setActiveStage(newIdx);
+    }
   };
 
   return (
@@ -128,13 +151,13 @@ export default function LadooFeature() {
             </div>
 
             {/* Stage Quick-Jump Selector Tabs below video (No timings) */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-4 text-xs">
+            <div className="flex md:grid md:grid-cols-5 gap-2 mt-4 text-xs overflow-x-auto no-scrollbar pb-1 md:pb-0">
               {PROCESS_STAGES.map((s, idx) => (
                 <button
                   key={s.stage}
                   type="button"
-                  onClick={() => seekToStage(s.time)}
-                  className={`p-2.5 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
+                  onClick={() => scrollToCard(idx)}
+                  className={`min-w-[130px] md:min-w-0 shrink-0 md:shrink p-2.5 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
                     activeStage === idx
                       ? 'bg-golden-amber/25 border-golden-amber text-golden-amber-light font-semibold shadow-gold-glow/20'
                       : 'bg-[#2e150d] border-ivory/10 text-ivory/70 hover:text-ivory hover:border-ivory/30'
@@ -159,45 +182,79 @@ export default function LadooFeature() {
 
           {/* 3D Craft & Story — Interactive Chapter Cards (No timings) */}
           <div className="mt-12">
-            <div className="text-center mb-6">
-              <span className="text-[0.72rem] uppercase tracking-[0.22em] text-golden-amber font-semibold">
-                The Five Chapters of Culinary Alchemy
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-brand-brown mt-1">
-                The Story Behind Every Sphere
-              </h3>
+            <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
+              <div className="text-center sm:text-left">
+                <span className="text-[0.72rem] uppercase tracking-[0.22em] text-golden-amber font-semibold">
+                  The Five Chapters of Culinary Alchemy
+                </span>
+                <h3 className="font-serif text-xl sm:text-2xl text-brand-brown mt-1">
+                  The Story Behind Every Sphere
+                </h3>
+              </div>
+
+              {/* Mobile Carousel Controls */}
+              <div className="flex items-center gap-2 md:hidden">
+                <button
+                  type="button"
+                  onClick={() => scrollToCard(Math.max(0, activeStage - 1))}
+                  disabled={activeStage === 0}
+                  aria-label="Previous step"
+                  className="w-8 h-8 rounded-full border border-golden-amber/40 bg-ivory flex items-center justify-center text-brand-brown disabled:opacity-35 disabled:cursor-not-allowed shadow-soft active:scale-95 transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="text-xs font-semibold text-muted-taupe px-1 font-serif">
+                  {activeStage + 1} / {PROCESS_STAGES.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => scrollToCard(Math.min(PROCESS_STAGES.length - 1, activeStage + 1))}
+                  disabled={activeStage === PROCESS_STAGES.length - 1}
+                  aria-label="Next step"
+                  className="w-8 h-8 rounded-full border border-golden-amber/40 bg-ivory flex items-center justify-center text-brand-brown disabled:opacity-35 disabled:cursor-not-allowed shadow-soft active:scale-95 transition-all"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3.5">
+            {/* 5 Cards Row: Single-line Carousel on small screens, 5-column grid on desktop */}
+            <div
+              ref={cardsContainerRef}
+              onScroll={handleCardsScroll}
+              className="flex md:grid md:grid-cols-5 gap-3.5 overflow-x-auto md:overflow-visible pb-3 md:pb-0 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0"
+            >
               {PROCESS_STAGES.map((step, idx) => {
                 const IconComponent = step.icon;
                 const isActive = activeStage === idx;
                 return (
                   <div
                     key={step.stage}
-                    onClick={() => seekToStage(step.time)}
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-left ${
+                    onClick={() => scrollToCard(idx)}
+                    className={`w-[82%] sm:w-[50%] md:w-auto shrink-0 md:shrink snap-center p-4 rounded-2xl border transition-all duration-300 cursor-pointer text-left flex flex-col justify-between ${
                       isActive
                         ? 'bg-ivory border-golden-amber shadow-premium ring-1 ring-golden-amber/50 -translate-y-1'
                         : 'bg-ivory/80 border-taupe-light/80 hover:bg-ivory hover:border-golden-amber/40 hover:-translate-y-0.5'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-serif font-bold ${
-                        isActive ? 'bg-golden-amber text-roasted-brown' : 'bg-cream text-brand-brown border border-golden-amber/30'
-                      }`}>
-                        {step.stage}
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-serif font-bold ${
+                          isActive ? 'bg-golden-amber text-roasted-brown' : 'bg-cream text-brand-brown border border-golden-amber/30'
+                        }`}>
+                          {step.stage}
+                        </div>
+                        <IconComponent className={`w-4 h-4 ${isActive ? 'text-golden-amber' : 'text-muted-taupe'}`} />
                       </div>
-                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-golden-amber' : 'text-muted-taupe'}`} />
+
+                      <h4 className="font-serif text-sm font-semibold text-brand-brown leading-snug">
+                        {step.shortName}
+                      </h4>
+
+                      <p className="text-[0.78rem] text-muted-taupe leading-relaxed mt-1.5 line-clamp-3">
+                        {step.desc}
+                      </p>
                     </div>
-
-                    <h4 className="font-serif text-sm font-semibold text-brand-brown leading-snug">
-                      {step.shortName}
-                    </h4>
-
-                    <p className="text-[0.78rem] text-muted-taupe leading-relaxed mt-1.5 line-clamp-3">
-                      {step.desc}
-                    </p>
 
                     <div className="mt-3 pt-2 border-t border-taupe-light/50 flex items-center justify-between text-[0.68rem]">
                       <span className="text-golden-amber font-semibold">Stage 0{step.stage}</span>
@@ -206,6 +263,23 @@ export default function LadooFeature() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Mobile Carousel Indicators (5 Dots) */}
+            <div className="flex md:hidden items-center justify-center gap-1.5 mt-3.5">
+              {PROCESS_STAGES.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  onClick={() => scrollToCard(dotIdx)}
+                  aria-label={`Go to stage ${dotIdx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeStage === dotIdx
+                      ? 'w-6 bg-golden-amber'
+                      : 'w-2 bg-taupe-light hover:bg-muted-taupe'
+                  }`}
+                />
+              ))}
             </div>
           </div>
 
